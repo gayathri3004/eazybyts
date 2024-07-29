@@ -1,0 +1,361 @@
+
+@font-face {
+	font-family: DateFont;
+	src: url('../fonts/shadows.ttf');
+}
+
+@font-face {
+	font-family: NewsFont;
+	src: url('../fonts/KdamThmorPro-Regular.ttf');
+}
+
+:root {
+--black:#212529;
+--white:#fff;
+--gray:#d4d4d4;
+--background:#fff;
+--color:#222;
+}
+
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
+a{
+	font-family: NewsFont;
+	font-size: 14px;
+}
+h1{
+	font-family:NewsFont;
+}
+h4{
+	font-family:NewsFont;
+}
+label{
+	font-family: NewsFont;
+	font-size:14px;
+}
+.navbar-header{
+        height: 45px;
+
+ }
+.navbar-header img{
+       height: 90%;
+       opacity: 1;
+  		transition: .2s ease;
+}
+.navbar-header:hover img{
+   opacity: 0.5;
+}
+
+.footer-img{
+   
+       opacity: 1;
+  		transition: .2s ease;
+}
+.footer-img:hover{
+   opacity: 0.5;
+}
+
+.navbar-toggler {
+  float: right;
+     border-color: white !important;
+
+}
+
+
+.navbar-toggler:focus {
+
+    box-shadow: none!important;
+}
+
+
+.nav-item{
+
+	letter-spacing: 0.9px;
+	font-weight: bold;
+	color:var(--black);
+	box-shadow: none!important;
+	
+}
+
+.form-check a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.form-check a:hover {
+    text-decoration: none;
+    color: rgb(96, 96, 96);
+}
+
+
+
+.news {
+	position: relative;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+	text-align: justify;
+	letter-spacing: -.4px;
+	margin: 4rem auto 0;
+}
+
+.news-header {
+	text-align: center;
+	overflow: hidden;
+	margin: 0 auto;
+	font-family:DateFont;
+}
+
+.news_img a:hover{
+	opacity: 80%;
+	transition: 0.25s ease-out;
+	
+}
+.news-header time{
+	font-weight: bold;
+}
+
+
+.news-title {
+	text-transform: uppercase;
+	margin: 0 0 10px;
+	letter-spacing: -.02em;
+	font-weight: bold;
+	font-size: 0.9em;
+	font-family:NewsFont;
+}
+
+.news-title a {
+	text-decoration: none;
+	color:var(--color);
+	transition: opacity .3s ease;
+}
+
+
+.news-title a:hover {
+	opacity: 90%;
+	color: gray;
+}
+
+.news-cat {
+	font-size: 0.9em;
+}
+
+.news-cat a {
+	font-family:DateFont;
+	text-decoration: none;
+	color:var(--color);
+	transition: opacity .3s ease;
+	margin-right:5px;
+}
+
+.news-cat a:hover {
+	opacity: 60%;
+	color: gray;
+	text-decoration: underline;
+}
+
+.news-fragment {
+	max-width:90%;
+	margin: 0 auto;
+}
+
+.news-fragment p {
+	font-size: .9em;
+	line-height: 1.6em;
+	font-weight: inherit;
+	margin: 0.3rem 0 0;
+	font-family: 400 12px/14px NewsFont;
+}
+
+.news-fragment span>a {
+	color:var(--color);
+	text-decoration: underline;
+	transition: opacity .3s ease;
+	font: 700 12px/14px DateFont;
+	letter-spacing: .2em;
+}
+
+.news-fragment span>a:hover {
+	opacity: 60%;
+	color: gray;
+}
+.pagination {
+	display: inline-block;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.pagination a {
+	color: black;
+	padding-right: 10px;
+	text-decoration: none;
+	font-family: 400 12px/14px NewsFont;
+}
+
+.pagination a.active {
+	
+	border-radius: 5px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.pagination a:hover:not(.active) {
+	color: gray;
+	text-decoration: underline;
+}
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
+.card{
+	margin: 4rem auto 0;
+}
+.card ul > li{
+	
+	margin: 5px;
+}
+.btn-outline-dark{
+	
+	margin-top: 30px;
+	margin-left:10px;
+	
+}
+
+.test{
+	background: rgb(117, 255, 117);
+}
+
+table.tabled.table-hover tbody tr:hover {
+	background: #f5f5f5;
+}
+
+
+.table-title .btn {
+	font-size: 13px;
+	margin:0;
+}
+
+
+.btn.btn-block {
+    border-radius: 20px;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.btn.btn-block:hover {
+    background-color: rgb(96, 96, 96);
+    color: var(--white);
+}
+
+.form-check a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.form-check a:hover {
+    text-decoration: none;
+    color: rgb(96, 96, 96);
+}
+
+.input-field {
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid rgb(0, 0, 128);
+    color: rgb(0, 0, 128)
+}
+
+.input-field:hover {
+    color: var(--black);
+    border: 1px solid var(--black);
+}
+
+input {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 0px 2px;
+}
+
+.card-footer a{
+	text-decoration: none;
+    color: var(--black);
+    font-weight: 700;
+}
+.card-footer a:hover {
+    text-decoration: none;
+    color: rgb(96, 96, 96);
+}
+
+.form-check-input:checked{
+   background-color: rgb(0, 0, 128)!important;
+   box-shadow: 0 0 0 0.2rem rgba(0,0,0,0)!important;
+}
+.form-check-input{
+   box-shadow: 0 0 0 0.2rem rgba(0,0,0,0)!important;
+}
+
+table.table td a.delete {
+    color:rgb(244, 125, 113);
+
+}
+table.table td a.delete:hover {
+  font-size:1.27em;
+  transition: 0.25s ease-out;
+
+}
+table.table td a.edit {
+    color:rgb(0, 0, 128);
+
+}
+table.table td a.edit:hover {
+  font-size:1.27em;
+  transition: 0.25s ease-out;
+
+}
+
+.activationLink a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.activationLink a:hover {
+    text-decoration: none;
+    color: rgb(96, 96, 96);
+}
+
+
+
+
+ 
+
+
+.git-link{
+	
+	color:var(--black)!important;
+	
+}
+
+
+.git-link:hover{
+   opacity: 0.5;
+}
+
+  
+

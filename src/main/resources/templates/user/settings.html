@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'settings')}">
+<head>
+<meta charset="UTF-8" />
+<title>Settings</title>
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row" style="margin-top: 20px">
+			<div th:if="${#fields.hasErrors('${passwordForm.password}')}"
+				class="alert alert-danger text-center"
+				th:text=" ${#fields.errors('${passwordForm.password}')[0]}"></div>
+			<div th:if="${param.passChanged}"
+				class="alert alert-success text-center">Your password has been
+				successfully changed.</div>
+			<div th:if="${param.nameUpdated}"
+				class="alert alert-success text-center">Your account details
+				have been successfully changed.</div>
+
+			<div class="col-md-4">
+				<div class="card shadow-lg ">
+					<div class="card-body p-5">
+						<form th:object="${nameForm}" th:action="@{/user/updateName}"
+							th:method="post">
+
+							<h4 class="fs-4 card-title fw-bold mb-4">Account details</h4>
+							<div class="mb-3 ">
+								<label class="mb-2 text-muted" for="firstName">First
+									Name</label>
+								<div class="input-field">
+									<span class="far fa-user p-2"></span> <input id="firstName"
+										type="text" name="firstName" th:field="*{firstName}" required>
+
+
+								</div>
+
+							</div>
+
+							<div class="mb-3">
+
+								<label class="mb-2 text-muted" for="firstName">Last Name
+									Name</label>
+								<div class="input-field">
+									<span class="far fa-user p-2"></span> <input id="firstName"
+										type="text" name="firstName" th:field="*{lastName}" required>
+
+
+								</div>
+							</div>
+
+
+
+							<button type="Submit" class="btn btn-block text-center my-3 w-50"
+								th:text="Save" value="saveName">Save</button>
+
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+
+				<div class="card shadow-lg">
+					<div class="card-body p-5">
+						<form class="form-horizontal" th:object=${passwordForm}
+							th:action="@{/changePassword}" method="POST" id="passwordForm">
+							<h4 class="fs-4 card-title fw-bold mb-4">Change your
+								password</h4>
+							<div class="mb-3">
+								<label class="mb-2 text-muted" for="password">New
+									password</label>
+
+								<div class="input-field">
+									<span class="fas fa-lock p-2"></span> <input id="password"
+										type="password" name="password" th:field="*{password}"
+										required>
+
+								</div>
+
+							</div>
+							<div class="mb-3">
+
+								<label class="mb-2 text-muted" for="matchingPassword">Confirm
+									password</label>
+								<div class="input-field">
+									<span class="fas fa-lock p-2"></span> <input
+										id="matchingPassword" type="password" name="matchingPassword"
+										required th:field="*{matchingPassword}">
+
+								</div>
+
+							</div>
+
+
+							<button type="Submit" class="btn btn-block text-center my-3 w-50"
+								th:text="Save" value="SavePassword">Save</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card shadow-lg">
+					<div class="card-body p-5">
+						<div class="table">
+							<div class="table-title">
+								<div class="row">
+									<div class="col-sm-6">
+
+										<h4 class="fs-4 card-title fw-bold mb-2">Manage Lists</h4>
+									</div>
+									<div class="col-sm-5">
+										<a th:href="@{/list/new}" class="btn btn-outline-dark"
+											data-toggle="modal"><i
+											class="fa-solid fa-file-circle-plus"></i> <span>Add
+												New List</span></a>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-11">
+								<table class="table table-hover">
+
+									<tbody>
+
+										<tr th:each="list: ${lists}"
+											th:class="${list.active} ? 'test' : ''">
+											<td>
+												<form th:id="@{'deleteForm'+${list.id}}"
+													th:action="@{'/list/'+${list.id}+'/delete'}" method="POST"
+													style="display: none"></form>
+											</td>
+
+											<td th:text="${list.name}">List1</td>
+
+											<td><a th:href="${list.active} ?  @{'/list/'+${list.id}+'/setAsInactive'}:@{'/list/'+${list.id}+'/setAsActive'}"
+												class="edit float-end" data-toggle="modal"><i
+													th:class="${list.active} ? 'fa-regular fa-circle-xmark p-2 fa-lg' :'fa-regular fa-square-check p-2 fa-lg'"
+													title="Set List As Active on home page"></i></a> <a
+												th:data-thing="'deleteForm'+${list.id}" href=""
+												onclick="document.getElementById(this.getAttribute('data-thing')).submit(); return false;"
+												class="delete float-end" data-toggle="modal"
+												title="Delete List"><i
+													class="fa-regular fa-trash-can p-2 fa-lg"></i></a>
+												<a th:href="@{'/list/'+${list.id}+'/edit'}"
+												class="edit float-end" data-toggle="modal" title="Edit List"><i
+													class="fa-regular fa-pen-to-square p-2 fa-lg"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

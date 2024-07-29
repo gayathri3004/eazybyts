@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+<meta charset="UTF-8" />
+<title>Activation Account</title>
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row justify-content-sm-center">
+
+			<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-7 col-sm-9">
+				<div th:if="${param.wrongEmail}"
+					class="alert alert-danger text-center mt-3">Account doesn't
+					exist</div>
+				<div th:if="${param.sent}"
+					class="alert alert-success text-center mt-3">Check your
+					email.</div>
+				<div class="card shadow-lg">
+					<div class="card-body p-5">
+						<form class="form-horizontal" th:action="@{/sendActivationEmail}"
+							method="POST" id="emailForm">
+							<h4 class="fs-4 card-title fw-bold mb-4">Resend activation
+								email for your account</h4>
+							<div class="mb-3">
+								<label class="mb-2 text-muted" for="password">Email
+									address</label>
+
+								<div class="input-field">
+									<span class="fa-solid fa-envelope p-2"></span> <input
+										id="email" type="email" name="email" required>
+
+								</div>
+
+							</div>
+
+
+
+							<button type="Submit" class="btn btn-block text-center my-3 w-50"
+								th:text="Send">Send</button>
+						</form>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

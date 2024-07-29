@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+<body>
+
+	<div class="container">
+		<div class="row justify-content-sm-center">
+
+			<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+				<div th:if="${#fields.hasErrors('${registerForm.email}')}"
+					class="alert alert-danger text-center mt-2"
+					th:each="err : ${#fields.errors('${registerForm.email}')}"
+					th:text="${err}"></div>
+					<div th:if="${#fields.hasErrors('${registerForm.password}')}"
+					class="alert alert-danger text-center mt-2"
+					th:each="err : ${#fields.errors('${registerForm.password}')}"
+					th:text="${err}"></div>
+				<div class="card shadow-lg">
+					<div class="card-body p-5">
+						<h1 class="fs-4 card-title fw-bold mb-4 text-center">Create
+							Account</h1>
+						<form method="POST" th:object="${registerForm}"
+							th:action="@{/register}">
+
+							<div class="mb-3">
+
+
+								<label class="mb-2 text-muted" for="email">E-Mail</label>
+								<div class="input-field">
+									<span class="fas fa-envelope p-2"></span> <input id="email"
+										type="email" name="email" value="" required autofocus>
+
+									<th:block th:if="${#fields.hasErrors('email')}">
+										<span class="fa-solid fa-xmark" aria-hidden="true"></span>
+									</th:block>
+
+								</div>
+							</div>
+							<div class="mb-3">
+								<div class="mb-2 w-100">
+									<label class="text-muted" for="password">Password</label>
+
+								</div>
+								<div class="input-field">
+									<span class="fas fa-lock p-2"></span> <input id="password"
+										type="password" name="password" required>
+									<th:block th:if="${#fields.hasErrors('password')}">
+										<span class="fa-solid fa-xmark" aria-hidden="true"></span>
+									</th:block>
+								</div>
+							</div>
+							<div class="mb-3">
+
+								<label class="mb-2 text-muted" for="matchingPassword">Confirm
+									Password</label>
+								<div class="input-field">
+									<span class="fas fa-lock p-2"></span> <input
+										id="matchingPassword" type="password" name="matchingPassword"
+										value="" required autofocus>
+									<th:block th:if="${#fields.hasErrors('password')}">
+										<span class="fa-solid fa-xmark" aria-hidden="true"></span>
+									</th:block>
+								</div>
+							</div>
+
+							<div class="mb-3">
+
+								<label class="mb-2 text-muted" for="firstName">First
+									Name</label>
+								<div class="input-field">
+									<span class="far fa-user p-2"></span> <input id="firstName"
+										type="text" name="firstName" value="">
+
+
+								</div>
+							</div>
+							<div class="mb-3">
+
+								<label class="mb-2 text-muted" for="lastName">Last Name</label>
+								<div class="input-field">
+									<span class="far fa-user p-2"></span> <input id="lastName"
+										type="text" name="lastName" value="">
+
+
+								</div>
+							</div>
+
+
+							<button class="btn btn-block text-center my-3 w-100">Sign
+								up</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

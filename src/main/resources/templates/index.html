@@ -1,0 +1,99 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+<meta charset="UTF-8" />
+<title>Short News</title>
+
+
+</head>
+<body>
+	<div class="container">
+	
+		<div class="row ">
+			<div class="col-sm-3" th:each="feed: ${results}">
+				<article class="news">
+					<header class="news-header">
+						<h3 class="news-title">
+							<a th:href="${feed.uri}" th:target="_blank"
+								th:text="${feed.title}">Title</a>
+						</h3>
+						<div class="news_img">
+							<a th:href="${feed.uri}" th:target="_blank">
+								<img th:src="${feed.imageUrl}" width="300px"
+								onerror="this.style.display='none'">
+							</a>
+						</div>
+						<hr />
+						<time th:text="${feed.publishedAgo}">Thursday, June 12,
+							2022</time>
+						<p class="news-cat">
+							<span th:each="category : ${feed.categories}"><a
+								th:href="@{'?tag='+${category.name}}" th:text="${category.name}">Sport
+							</a></span>
+						</p>
+						<hr />
+					</header>
+					<section class="news-fragment">
+						<p th:text="${feed.entry}">England shattered their own world
+							record for the highest total in ODI cricket in the first
+							one-dayer against Netherlands</p>
+						<span><a th:href="${feed.uri}" th:target="_blank">more</a></span>
+					</section>
+				</article>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="pagination"
+		th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+		<div th:if="${totalPages>=2}">
+			<a
+				th:href="${urlBuilder.replaceQueryParam('page',currentPage-1).toUriString()}"
+				th:class="${currentPage==1 ? 'disabled' : ''}">&laquo;</a>
+		</div>
+		<div th:if="${totalPages<=6 && totalPages>0}">
+			<a th:each="i: ${#numbers.sequence(1, totalPages)}"
+				th:href="${urlBuilder.replaceQueryParam('page',i).toUriString()}"
+				th:text="${i}" th:class="${currentPage==i ? 'active' : ''}"></a>
+		</div>
+		<div th:if="${totalPages>6}">
+			<a th:href="${urlBuilder.replaceQueryParam('page',1).toUriString()}"
+				th:text="1" th:class="${currentPage==1 ? 'active' : ''}"></a> <a
+				th:if="${currentPage>3}"><span>...</span></a> <a
+				th:if="${currentPage==totalPages}"
+				th:href="${urlBuilder.replaceQueryParam('page',currentPage - 2).toUriString()}"><span
+				th:text="${currentPage-2}"></span></a> <a
+				th:if="${currentPage>2 and currentPage<=totalPages}"
+				th:href="${urlBuilder.replaceQueryParam('page',currentPage - 1).toUriString()}"><span
+				th:text="${currentPage-1}"> </span></a> <a
+				th:if="${currentPage!=1 and currentPage<totalPages}"
+				th:href="${urlBuilder.replaceQueryParam('page',currentPage).toUriString()}"
+				th:class="active"><span th:text="${currentPage}"> </span></a> <a
+				th:if="${currentPage<totalPages-1}"
+				th:href="${urlBuilder.replaceQueryParam('page',currentPage + 1).toUriString()}"><span
+				th:text="${currentPage+1}"></span></a> <a th:if="${currentPage==1}"
+				th:href="${urlBuilder.replaceQueryParam('page',currentPage + 2).toUriString()}"><span
+				th:text="${currentPage+2}"></span></a> <a
+				th:if="${currentPage<totalPages-2}"><span>...</span></a> <a
+				th:if="${totalPages>1}"
+				th:href="${urlBuilder.replaceQueryParam('page',totalPages).toUriString()}"
+				th:class="${currentPage==totalPages ? 'active' : ''}"><span
+				th:text="${totalPages}"></span></a>
+
+		</div>
+		<div th:if="${totalPages>=2}">
+			<a
+				th:href="${urlBuilder.replaceQueryParam('page',currentPage + 1).toUriString()}"
+				th:class="${currentPage==totalPages ? 'disabled' : ''}">&raquo;</a>
+		</div>
+
+
+	</div>
+</body>
+</html>
